@@ -7,8 +7,13 @@ using static System.Console;
 WriteTitle("Свойства числа");
 
 Write("Введите число в интервале [-999;999]: ");
-string input = ReadLine();
-int number = int.Parse(input);
+bool result = int.TryParse(ReadLine(), out int number);
+while (!result || number < -999 || number > 999)
+{
+    Write("Некорректный ввод. Введите число в интервале [-999;999]: ");
+    result = int.TryParse(ReadLine(), out number);
+}
+
 if (number < 0)
     Write("Отрицательное ");
 else if (number > 0)
