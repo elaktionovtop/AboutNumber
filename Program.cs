@@ -2,22 +2,45 @@
 Пользователь вводит число в интервал [-999;999].
 Вывести описание этого числа: положительное/отрицательное, четное/нечетное, сколько знаков.
 */
+using static System.Console;
 
 WriteTitle("Свойства числа");
+
+Write("Введите число в интервале [-999;999]: ");
+string input = ReadLine();
+int number = int.Parse(input);
+if (number < 0)
+    Write("Отрицательное ");
+else if (number > 0)
+    Write("Положительное ");
+else
+    Write("Нулевое ");
+                      
+if (number % 2 == 0)
+    Write("Четное ");
+else
+    Write("Нечетное ");
+
+if (number >= -9 && number <= 9)
+    Write("Однозначное");
+else if (number >= -99 && number <= 99)
+    Write("Двузначное");
+else
+    Write("Трехзначное");
 
 ExitApp();
 
 
 void WriteTitle(string title)
 {
-    Console.WriteLine(title);
-    Console.WriteLine(new string('-', title.Length));
-    Console.WriteLine();
+    WriteLine(title);
+    WriteLine(new string('-', title.Length));
+    WriteLine();
 }
 
 void ExitApp()
 {
-    Console.WriteLine();
-    Console.Write("Для выхода нажми Enter");
-    Console.ReadLine();
+    WriteLine();
+    Write("Для выхода нажми Enter");
+    ReadLine();
 }
