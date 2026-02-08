@@ -21,12 +21,11 @@ ExitApp();
 
 void DescribeNumber()
 {
-    Write("Введите число в интервале [-999;999]: ");
-    bool result = int.TryParse(ReadLine(), out int number);
-    while(!result || number < -999 || number > 999)
+    int number = EnterInteger("Введите число в интервале [-999;999]: ");
+    while (number < -999 || number > 999)
     {
-        Write("Некорректный ввод. Введите число в интервале [-999;999]: ");
-        result = int.TryParse(ReadLine(), out number);
+            WriteLine("Ошибка!");
+            number = EnterInteger("Введите число в интервале [-999;999]: ");
     }
 
     if(number < 0)
@@ -47,6 +46,18 @@ void DescribeNumber()
         Write("Двузначное");
     else
         Write("Трехзначное");
+}
+
+int EnterInteger(string prompt)
+{
+    Write(prompt);
+    bool result = int.TryParse(ReadLine(), out int number);
+    while(!result)
+    {
+        Write($"Некорректный ввод. {prompt}");
+        result = int.TryParse(ReadLine(), out number);
+    }
+    return number;
 }
 
 void WriteTitle(string title)
